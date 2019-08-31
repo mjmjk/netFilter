@@ -125,6 +125,18 @@ static u_int32_t print_pkt (struct nfq_data *tb)
                         }
                     }
                 }
+                if(payload[0] == 'P' && payload[1] == 'O' && payload[2] == 'S' && payload[3] == 'T')
+                {
+                    for (int i =0;i<strlen(url);i++)
+                    {
+                        if(payload[24+i] == url[i])
+                        {
+                            printf("##############block ###########\n");
+                            return NF_DROP;
+
+                        }
+                    }
+                }
             }
         }
 
